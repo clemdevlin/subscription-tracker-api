@@ -1,0 +1,7 @@
+{
+    "watch": [
+        ".env.development.local"
+    ],
+    "ext": "js,ts,json",
+    "exec": "node app.js"
+}
