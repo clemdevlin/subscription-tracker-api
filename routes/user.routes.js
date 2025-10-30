@@ -1,18 +1,29 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-import authorize from '../middlewares/auth.middleware.js'
-import { getUser, getUsers } from '../controllers/user.controller.js'
+import authorize from "../middlewares/auth.middleware.js";
+import {
+  getUser,
+  getUsers,
+  createUser,
+  updateUser,
+  deleteUser,
+} from "../controllers/user.controller.js";
 
 const userRouter = Router();
 
-userRouter.get('/', getUsers);
+// Get all users (protected)
+userRouter.get("/", authorize, getUsers);
 
-userRouter.get('/:id', authorize, getUser);
+// Get single user (protected)
+userRouter.get("/:id", authorize, getUser);
 
-userRouter.post('/', (req, res) => res.send({ title: 'CREATE new user' }));
+// Create new user (public - used for registration)
+userRouter.post("/", createUser);
 
-userRouter.put('/:id', (req, res) => res.send({ title: 'UPDATE user' }));
+// Update user (protected)
+userRouter.put("/:id", authorize, updateUser);
 
-userRouter.delete('/:id', (req, res) => res.send({ title: 'DELETE user' }));
+// Delete user (protected)
+userRouter.delete("/:id", authorize, deleteUser);
 
 export default userRouter;

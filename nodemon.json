@@ -1,6 +1,8 @@
 {
     "watch": [
-        ".env.development.local"
+        ".env.development.local",
+        "./routes",
+        "./controllers"
     ],
     "ext": "js,ts,json",
     "exec": "node app.js"
